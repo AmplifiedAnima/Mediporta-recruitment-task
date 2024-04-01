@@ -19,7 +19,7 @@ const mockDataHook: DataHookInterface = {
   setOrder: action("setOrder"),
   sort: "popular",
   setSort: action("setSort"),
-  inName: "",
+  inName: " ",
   setInName: action("setInName"),
   fetchTags: () => Promise.resolve(mockDataTags),
   triggerFetch: true,

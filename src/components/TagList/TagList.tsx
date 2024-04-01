@@ -86,7 +86,7 @@ export const TagList: React.FC<{
         }}
         siblingCount={0}
         boundaryCount={1}
-        sx={{
+        sx={{ 
           background: "linear-gradient(to left, #ffffff 10%,  #bcd9ea 60%)",
           borderRadius: "8px",
         }}
@@ -108,7 +108,7 @@ export const TagList: React.FC<{
       <Alert severity="error">
         <AlertTitle>error {error.response && error.message}</AlertTitle>
         {error.response
-          ? `${error.response.status} ${error.response.statusText}`
+          ? `${error.response.status} ${error.response.statusText} ${error.response}`
           : error.message}
       </Alert>
     );
