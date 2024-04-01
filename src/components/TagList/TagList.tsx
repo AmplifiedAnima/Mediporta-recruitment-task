@@ -12,10 +12,10 @@ import {
 import { useQuery } from "react-query";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-
 import { DataHookInterface } from "../../interfaces/DataHook.interface";
 import { ApiError, TagsApiResponse } from "../../interfaces/TagsApi.interface";
 import { TagInterface } from "../../interfaces/Tag.interface";
+import { cardStyling } from "./TagListsStyles";
 
 export const TagList: React.FC<{
   dataHook: DataHookInterface;
@@ -133,7 +133,7 @@ export const TagList: React.FC<{
             p: 1,
             background: "white",
             borderTop: "1px solid rgba(0,0,0,0.12)",
-            zIndex: theme.zIndex.snackbar, // To ensure it stays above other elements
+            zIndex: theme.zIndex.snackbar,
           }}
         >
           {paginationComponent}
@@ -146,7 +146,7 @@ export const TagList: React.FC<{
           sx={{
             display: "flex",
             justifyContent: { xs: "center", sm: "left" }, // Responsive alignment
-            alignItems: "center", // Vertically center items in the grid
+            alignItems: "center",
             margin: "5px 15px",
           }}
         >
@@ -154,28 +154,7 @@ export const TagList: React.FC<{
         </Grid>
         {data.items.map((tag: TagInterface, index: number) => (
           <Grid item xs={6} sm={4} md={3} lg={2} key={index}>
-            <Card
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                background:
-                  "linear-gradient(to bottom, #ffffff 20%, #f4f1fd 50%,	#e4f0f6 80%)",
-                color: "#34495e",
-                borderRadius: "8px",
-                margin: "0px 10px", // Adjust margins as needed
-                boxShadow: "0 2px 4px rgba(0,0,0,0.1)", // Optional shadow for depth
-                "&:hover": {
-                  backgroundColor: "#d3ccef",
-                },
-                // Reduce the overall padding inside the card for a tighter layout
-                ".MuiCardContent-root": {
-                  padding: "16px",
-                  "&:last-child": {
-                    paddingBottom: "16px",
-                  },
-                },
-              }}
-            >
+            <Card sx={cardStyling}>
               <CardContent>
                 <Typography
                   gutterBottom
