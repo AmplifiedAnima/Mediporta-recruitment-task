@@ -1,30 +1,17 @@
-import { action } from "@storybook/addon-actions";
 import { Meta, StoryObj } from "@storybook/react";
 import { TagList } from "../components/TagList/TagList";
 import { DataHookInterface } from "../interfaces/DataHook.interface";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { mockDataTags } from "./TagListMockData";
+import { mockDataHook } from "./mockDataHook";
 
 export default {
   title: "Components/TagList",
   component: TagList,
+  // Add a description for the entire story
+  parameters: {
+    componentSubtitle: "A component to display a list of tags.",
+  },
 } as Meta<typeof TagList>;
-
-const mockDataHook: DataHookInterface = {
-  page: 1,
-  setPage: action("setPage"),
-  pageSize: 10,
-  setPageSize: action("setPageSize"),
-  order: "desc",
-  setOrder: action("setOrder"),
-  sort: "popular",
-  setSort: action("setSort"),
-  inName: " ",
-  setInName: action("setInName"),
-  fetchTags: () => Promise.resolve(mockDataTags),
-  triggerFetch: true,
-  setTriggerFetch: action("setTriggerFetch"),
-};
 
 const queryClient = new QueryClient();
 
@@ -41,4 +28,15 @@ const Template: StoryObj<{ dataHook: DataHookInterface }> = {
   ],
 };
 
+// Story for the default state of the TagList component
 export const Default = Template;
+
+// Add comments to explain the purpose of the story
+Default.storyName = "Default TagList";
+Default.parameters = {
+  docs: {
+    description: {
+      story: "A default TagList component with no tags.",
+    },
+  },
+};

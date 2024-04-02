@@ -4,15 +4,18 @@ export const textFieldStyling = {
     minHeight: "40px",
     maxHeight: "40px",
     color: "#055a8c",
+    width: "180px",
+    "@media (max-width: 768px)": {
+      width: "50%",
+    },
+    "@media (max-width: 280px)": {
+      width: "100%", // Adjust width for smaller devices
+    },
   },
   "& .MuiInputBase-root": {
-    height: "40px",
+    height: "35px",
     alignItems: "center",
     color: "",
-  },
-  "& .MuiButton-label": {
-    lineHeight: "40px",
-    color: "white",
   },
   "& .MuiTypography-root": {
     lineHeight: "40px",
@@ -23,25 +26,25 @@ export const textFieldStyling = {
     fontWeight: "bold",
   },
   "& .MuiInputLabel-root.Mui-focused, & .MuiInputLabel-root:hover": {
-    color: "#89609e",
+    color: "#0079bf",
   },
   "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
     borderColor: "#5ba4cf",
   },
   "& .MuiButton-contained": {
-    backgroundColor: "#055a8c", // This will change the background color
-    color: "white", // This is for the text color
+    backgroundColor: "#055a8c",
+    color: "white",
     maxWidth: "80px",
     display: "flex",
     justifyContent: "center",
-
     "&:hover": {
-      backgroundColor: "#b368d4", // Darker shade for hover state
+      backgroundColor: "#0c3953",
+      color: "white",
     },
   },
   "& .MuiSelect-select": {
-    minWidth: "120px", // Ensures dropdown is not too narrow
-    padding: "10px 14px", // Adjust padding to ensure content is not clipped
+    minWidth: "120px",
+    padding: "10px 14px",
     "@media (max-width: 768px)": {
       minWidth: "50px",
     },
@@ -55,6 +58,7 @@ export const boxHeaderStyles = {
   minHeight: "20px",
   display: "flex",
   flexDirection: "row",
+  justifyContent: "center",
   gap: 2.8,
   "@media (max-width: 768px)": {
     flexDirection: "column",
@@ -67,16 +71,19 @@ export const boxHeaderStyles = {
       margin: "8px 0",
     },
   },
+  "@media (max-width: 280px)": {
+    padding: "5px", // Adjust padding for smaller devices
+  },
   ...textFieldStyling,
 };
 
-export const inNameStyles = {
+export const InNameAndPageSizeStyles = {
   ...textFieldStyling,
   "& .MuiInputLabel-root": {
-    lineHeight: "40px",
-    top: "-15px",
+    top: "-10px",
+    fontSize: "16px",
   },
   "& .MuiInputLabel-root.Mui-focused, & .MuiInputLabel-root:hover": {
-    top: "-8px",
+    top: "0px",
   },
 };

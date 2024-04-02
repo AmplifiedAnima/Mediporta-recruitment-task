@@ -1,44 +1,85 @@
+import { useState, useCallback } from "react";
 import { Box, TextField, MenuItem, Button, Typography } from "@mui/material";
+import _debounce from "lodash/debounce";
 import { DataHookInterface } from "../../interfaces/DataHook.interface";
-import {
-  textFieldStyling,
-  boxHeaderStyles,
-  inNameStyles,
-} from "./HeaderStyles";
+import { boxHeaderStyles, InNameAndPageSizeStyles } from "./HeaderStyles";
+import { NotificationHandlerDisplayComponent } from "../ErrorsAndNotifications/NotificationHandlerDisplayComponent";
 
 export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
   dataHook,
 }) => {
+  const [localInName, setLocalInName] = useState(dataHook.inName);
+  const [localPageSize, setLocalPageSize] = useState(
+    dataHook.pageSize.toString()
+  );
+
+  const handleInNameChange = useCallback(
+    _debounce((value: string) => {
+      dataHook.setInName(value);
+    }, 500),
+    []
+  );
+  const handlePageSizeChange = useCallback(
+    _debounce((size: number) => {
+      if (size >= 1 && size <= 100) {
+        dataHook.setPageSize(size);
+      }
+    }, 500),
+    []
+  );
+
+  const onInNameInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalInName(event.target.value);
+    handleInNameChange(event.target.value);
+  };
+
+  const onPageSizeInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const newSize = parseInt(event.target.value, 10);
+    setLocalPageSize(event.target.value);
+    handlePageSizeChange(newSize);
+  };
 
   const handleSubmission = () => {
-    dataHook.setTriggerFetch(true);
-    dataHook.setPage(1);
+    if (parseInt(localPageSize, 10) < 1 || parseInt(localPageSize, 10) > 100) {
+      dataHook.setSnackMessage("Page size must be between 1 and 100.");
+      dataHook.setSnackOpen(true);
+    } else {
+      dataHook.setPage(1);
+      dataHook.setTriggerFetch(true);
+    }
+  };
+
+  const handleSnackClose = () => {
+    dataHook.setSnackOpen(false);
   };
 
   return (
-    <Box sx={{ ...boxHeaderStyles }}>
+    <Box sx={boxHeaderStyles}>
       <TextField
-        label="Search through tag label"
+        label="Tag labels"
         type="text"
-        value={dataHook.inName || ''}
-        onChange={(e) => dataHook.setInName(e.target.value)}
-        sx={{ ...inNameStyles }}
+        value={localInName}
+        onChange={onInNameInputChange}
+        sx={InNameAndPageSizeStyles}
       />
 
       <TextField
-        label="how many tags per page ?"
+        label="Tags per page ?"
         type="number"
-        value={dataHook.pageSize}
-        onChange={(e) => dataHook.setPageSize(parseInt(e.target.value, 10))}
+        value={localPageSize}
+        onChange={onPageSizeInputChange}
         variant="outlined"
-        sx={{ ...textFieldStyling }}
+        inputProps={{ min: 1, max: 100 }}
+        sx={InNameAndPageSizeStyles}
       />
 
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
-          gap: 4,
+          gap: 3,
           "@media(max-width:768px)": {
             gap: 1,
           },
@@ -48,9 +89,9 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
           variant="body1"
           sx={{
             whiteSpace: "nowrap",
-            marginRight: "10px",
+
             "@media(max-width:768px)": {
-             marginRight:'1px',
+              marginRight: "1px",
             },
           }}
         >
@@ -96,6 +137,11 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
           Search
         </Button>
       </Box>
+      <NotificationHandlerDisplayComponent
+        open={dataHook.snackOpen}
+        handleClose={handleSnackClose}
+        notification={dataHook.snackMessage}
+      />
     </Box>
   );
 };
