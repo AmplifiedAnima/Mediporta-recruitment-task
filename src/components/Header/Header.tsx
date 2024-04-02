@@ -2,7 +2,11 @@ import { useState, useCallback } from "react";
 import { Box, TextField, MenuItem, Button, Typography } from "@mui/material";
 import _debounce from "lodash/debounce";
 import { DataHookInterface } from "../../interfaces/DataHook.interface";
-import { boxHeaderStyles, InNameAndPageSizeStyles } from "./HeaderStyles";
+import {
+  boxHeaderStyles,
+  InNameAndPageSizeStyles,
+  textFieldStyling,
+} from "./HeaderStyles";
 import { NotificationHandlerDisplayComponent } from "../ErrorsAndNotifications/NotificationHandlerDisplayComponent";
 
 export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
@@ -89,9 +93,8 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
           variant="body1"
           sx={{
             whiteSpace: "nowrap",
-
-            "@media(max-width:768px)": {
-              marginRight: "1px",
+            "@media (max-width: 768px)": {
+              display: "none",
             },
           }}
         >
@@ -103,7 +106,7 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
           size="small"
           value={dataHook.order}
           onChange={(e) => dataHook.setOrder(e.target.value)}
-          sx={{ width: "auto" }}
+          sx={textFieldStyling}
           label="Order"
         >
           <MenuItem value="asc">Ascending</MenuItem>
@@ -114,7 +117,7 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
           size="small"
           value={dataHook.sort}
           onChange={(e) => dataHook.setSort(e.target.value)}
-          sx={{ width: "auto" }}
+          sx={textFieldStyling}
           label="Sort by"
         >
           <MenuItem value="popular">Popular</MenuItem>
@@ -123,16 +126,7 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
         <Button
           variant="contained"
           onClick={handleSubmission}
-          sx={{
-            backgroundColor: "#cd8de5",
-            color: "white",
-            maxWidth: "80px",
-            display: "flex",
-            justifyContent: "center",
-            "&:hover": {
-              backgroundColor: "#b368d4",
-            },
-          }}
+          sx={textFieldStyling}
         >
           Search
         </Button>

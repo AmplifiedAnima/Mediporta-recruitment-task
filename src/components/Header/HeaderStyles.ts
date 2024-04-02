@@ -1,5 +1,5 @@
 export const textFieldStyling = {
-  "& .MuiTextField-root, & .MuiButton-root": {
+  "& .MuiTextField-root": {
     height: "40px",
     minHeight: "40px",
     maxHeight: "40px",
@@ -8,15 +8,13 @@ export const textFieldStyling = {
     "@media (max-width: 768px)": {
       width: "50%",
     },
-    "@media (max-width: 280px)": {
-      width: "100%", // Adjust width for smaller devices
-    },
   },
   "& .MuiInputBase-root": {
     height: "35px",
     alignItems: "center",
     color: "",
   },
+
   "& .MuiTypography-root": {
     lineHeight: "40px",
     color: "#055a8c",
@@ -32,14 +30,17 @@ export const textFieldStyling = {
     borderColor: "#5ba4cf",
   },
   "& .MuiButton-contained": {
+    marginBottom: "5px",
+    height: "35px",
+    width: "auto",
     backgroundColor: "#055a8c",
     color: "white",
-    maxWidth: "80px",
-    display: "flex",
-    justifyContent: "center",
     "&:hover": {
       backgroundColor: "#0c3953",
-      color: "white",
+    },
+    "@media (max-width: 768px)": {
+      width: "auto",
+      marginBottom: "12px",
     },
   },
   "& .MuiSelect-select": {
@@ -70,9 +71,6 @@ export const boxHeaderStyles = {
       width: "100%",
       margin: "8px 0",
     },
-  },
-  "@media (max-width: 280px)": {
-    padding: "5px", // Adjust padding for smaller devices
   },
   ...textFieldStyling,
 };
