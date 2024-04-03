@@ -16,6 +16,7 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
   const [localPageSize, setLocalPageSize] = useState(
     dataHook.pageSize.toString()
   );
+  // debouncing the values , so the taglist component will not re-render on every keystroke
 
   const handleInNameChange = useCallback(
     _debounce((value: string) => {
@@ -47,8 +48,10 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
 
   const handleSubmission = () => {
     if (parseInt(localPageSize, 10) < 1 || parseInt(localPageSize, 10) > 100) {
-      dataHook.setSnackMessage("Page size must be between 1 and 100.");
-      dataHook.setSnackOpen(true);
+      dataHook.setNotificationSnackMessage(
+        "Page size must be between 1 and 100."
+      );
+      dataHook.setNotificationSnackOpen(true);
     } else {
       dataHook.setPage(1);
       dataHook.setTriggerFetch(true);
@@ -56,7 +59,7 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
   };
 
   const handleSnackClose = () => {
-    dataHook.setSnackOpen(false);
+    dataHook.setNotificationSnackOpen(false);
   };
 
   return (
@@ -82,25 +85,13 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
-          gap: 3,
+          justifyContent:'right',
+          gap: 5,
           "@media(max-width:768px)": {
             gap: 1,
           },
         }}
       >
-        <Typography
-          variant="body1"
-          sx={{
-            whiteSpace: "nowrap",
-            "@media (max-width: 768px)": {
-              display: "none",
-            },
-          }}
-        >
-          SORT TAGS
-        </Typography>
-
         <TextField
           select
           size="small"
@@ -132,9 +123,9 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
         </Button>
       </Box>
       <NotificationHandlerDisplayComponent
-        open={dataHook.snackOpen}
+        open={dataHook.notificationSnackOpen}
         handleClose={handleSnackClose}
-        notification={dataHook.snackMessage}
+        notification={dataHook.notificationSnackMessage}
       />
     </Box>
   );

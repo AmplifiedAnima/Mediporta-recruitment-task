@@ -1,23 +1,18 @@
 export const cardStyling = {
   display: "flex",
   flexDirection: "column",
-  background:
-    "linear-gradient(to bottom, #ffffff 20%, #f4f1fd 50%, #e4f0f6 80%)",
+  width: "auto",
+  background: "linear-gradient(to left, #ffffff 20%, #f4f1fd 50%, #e4f0f6 80%)",
   color: "#34495e",
-  borderRadius: "8px",
-  margin: "0px 10px",
+  borderRadius: "7px",
+  marginTop: "20px",
+  height: "auto",
   boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
 
   "&:hover": {
     backgroundColor: "#d3ccef",
   },
-  ".MuiCardContent-root": {
-    padding: "16px",
 
-    "&:last-child": {
-      paddingBottom: "16px",
-    },
-  },
   "@media (max-width:768px)": {
     margin: "5px",
     ".MuiCardContent-root": {

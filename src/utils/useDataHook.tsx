@@ -7,10 +7,11 @@ export const useDataHook = () => {
   const [sort, setSort] = useState("popular");
   const [inName, setInName] = useState("");
   const [triggerFetch, setTriggerFetch] = useState(false);
-  const [snackOpen, setSnackOpen] = useState(false);
-  const [snackMessage, setSnackMessage] = useState("");
+  const [notificationSnackOpen, setNotificationSnackOpen] = useState(false);
+  const [notificationSnackMessage, setNotificationSnackMessage] = useState("");
   const [errorSnackOpen, setErrorSnackOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+
   const fetchTags = async () => {
     const params = new URLSearchParams({
       page: page.toString(),
@@ -52,10 +53,10 @@ export const useDataHook = () => {
     fetchTags,
     triggerFetch,
     setTriggerFetch,
-    snackOpen,
-    setSnackOpen,
-    snackMessage,
-    setSnackMessage,
+    notificationSnackOpen,
+    setNotificationSnackOpen,
+    notificationSnackMessage,
+    setNotificationSnackMessage,
     errorMessage,
     setErrorMessage,
     errorSnackOpen,

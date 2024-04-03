@@ -55,12 +55,12 @@ export const textFieldStyling = {
 export const boxHeaderStyles = {
   background:
     "linear-gradient(to right, #ffffff 20%, #f4f1fd 60%,#5ba4cf 100%)",
-  padding: "25px 20px",
+  padding: "20px ",
   minHeight: "20px",
   display: "flex",
   flexDirection: "row",
-  justifyContent: "center",
-  gap: 2.8,
+  justifyContent:'center',
+  gap: 3,
   "@media (max-width: 768px)": {
     flexDirection: "column",
     padding: "10px",

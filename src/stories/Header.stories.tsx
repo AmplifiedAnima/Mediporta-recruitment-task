@@ -19,10 +19,8 @@ const Template: StoryObj<{ dataHook: DataHookInterface }> = {
   },
 };
 
-// Story for the default state of the Header component
 export const Default = Template;
 
-// Story for the Header component with pre-filled input and selected page size
 export const FilledState: StoryObj<{ dataHook: DataHookInterface }> = (
   args: any
 ) => <Header {...args} />;
@@ -37,8 +35,8 @@ WithNotification.args = {
     ...mockDataHook,
     pageSize: 0, // Set to 0 to show the notification
     triggerFetch: true,
-    snackOpen: true,
-    snackMessage: "Page size must be between 1 and 100.",
+    notificationSnackOpen: true,
+    notificationSnackMessage: "Page size must be between 1 and 100.",
   },
 };
 WithNotification.storyName = "Header with Notification";

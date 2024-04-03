@@ -2,14 +2,13 @@ import { Box, CircularProgress, Grid } from "@mui/material";
 import { useQuery } from "react-query";
 import { DataHookInterface } from "../../interfaces/DataHook.interface";
 import { ApiError, TagsApiResponse } from "../../interfaces/TagsApi.interface";
-import { TagInterface } from "../../interfaces/Tag.interface";
-import TagCard from "./Card/TagCard";
+import TagCard from "./Tags/TagCard";
 import PaginationTagList from "./Pagination/PaginationTagList";
 import { gridItemStyles } from "./TagListsStyles";
 import { SimpleErrorInlineHandler } from "../ErrorsAndNotifications/SimpleErrorInlineHandler";
 import React from "react";
 import CenteredBox from "./CenteredBox";
-import { noTagFound, searchForTags } from "./NoTagsAndSearchForTagsObjects";
+import TagTable from "./Tags/TagTable";
 
 const TagListComponent: React.FC<{
   dataHook: DataHookInterface;
@@ -84,7 +83,7 @@ const TagListComponent: React.FC<{
   if (!data?.items) {
     return (
       <CenteredBox>
-        <TagCard tag={searchForTags} index={1} />
+        <TagCard tag={"search for Tags"} />
       </CenteredBox>
     );
   }
@@ -92,7 +91,7 @@ const TagListComponent: React.FC<{
   if (!data?.items || data.items.length === 0) {
     return (
       <CenteredBox>
-        <TagCard tag={noTagFound} index={1} />
+        <TagCard tag={"no Tags were found"} />
       </CenteredBox>
     );
   }
@@ -105,13 +104,21 @@ const TagListComponent: React.FC<{
         justifyContent="center"
         sx={{ marginTop: "5px" }}
       >
+        <Box
+          sx={{
+            marginBottom: "50px", // Assume the pagination bar is 100px tall
+            padding: "10px 0px",
+            maxWidth: "700px",
+            width: "100%",
+            height: "100%",
+            boxSizing: "border-box",
+          }}
+        >
+          <TagTable tags={data.items} />
+        </Box>
         <Grid item xs={12} sx={{ gridItemStyles }}>
           <PaginationTagList data={data} dataHook={dataHook} />
         </Grid>
-
-        {data.items.map((tag: TagInterface, index: number) => (
-          <TagCard tag={tag} index={index} />
-        ))}
       </Grid>
     </>
   );
