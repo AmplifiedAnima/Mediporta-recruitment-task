@@ -12,7 +12,6 @@ export const textFieldStyling = {
   "& .MuiInputBase-root": {
     height: "35px",
     alignItems: "center",
-    color: "",
   },
 
   "& .MuiTypography-root": {
@@ -23,12 +22,16 @@ export const textFieldStyling = {
     color: "#055a8c",
     fontWeight: "bold",
   },
+  "& .MuiInputLabel-root.Mui-focused":{
+    top:'0px'
+  },
   "& .MuiInputLabel-root.Mui-focused, & .MuiInputLabel-root:hover": {
     color: "#0079bf",
   },
   "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
     borderColor: "#5ba4cf",
   },
+  
   "& .MuiButton-contained": {
     marginBottom: "5px",
     height: "35px",
@@ -59,14 +62,14 @@ export const boxHeaderStyles = {
   minHeight: "20px",
   display: "flex",
   flexDirection: "row",
-  justifyContent:'center',
+  justifyContent: "center",
   gap: 3,
   "@media (max-width: 768px)": {
     flexDirection: "column",
     padding: "10px",
     background:
       "linear-gradient(to bottom,rgba(255, 255, 255, 0.5) 20%, rgba(244, 241, 253, 0.5) 30%, rgba(91, 164, 207, 0.2) 80%)",
-    gap: "1px",
+    gap: "5px",
     "& .MuiTextField-root, & .MuiButton-root": {
       width: "100%",
       margin: "8px 0",
@@ -75,13 +78,3 @@ export const boxHeaderStyles = {
   ...textFieldStyling,
 };
 
-export const InNameAndPageSizeStyles = {
-  ...textFieldStyling,
-  "& .MuiInputLabel-root": {
-    top: "-10px",
-    fontSize: "16px",
-  },
-  "& .MuiInputLabel-root.Mui-focused, & .MuiInputLabel-root:hover": {
-    top: "0px",
-  },
-};

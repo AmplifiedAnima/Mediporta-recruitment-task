@@ -8,30 +8,4 @@ export const cardStyling = {
   marginTop: "20px",
   height: "auto",
   boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-
-  "&:hover": {
-    backgroundColor: "#d3ccef",
-  },
-
-  "@media (max-width:768px)": {
-    margin: "5px",
-    ".MuiCardContent-root": {
-      "& .MuiTypography-subtitle1": {
-        fontSize: "0.9rem",
-      },
-      "& .MuiTypography-body2": {
-        fontSize: "0.8rem",
-      },
-    },
-  },
-  "@media (max-width:280px)": {
-    ".MuiCardContent-root": {
-      "& .MuiTypography-subtitle1": {
-        fontSize: "0.8rem",
-      },
-      "& .MuiTypography-body2": {
-        fontSize: "0.7rem",
-      },
-    },
-  },
 };

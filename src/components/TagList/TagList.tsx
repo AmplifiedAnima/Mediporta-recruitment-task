@@ -34,9 +34,9 @@ const TagListComponent: React.FC<{
         dataHook.setTriggerFetch(false);
       },
       onError: (err: ApiError) => {
-        const detailedErrorMessage = err.details
-          ? `Error ${err.details.error_id}: ${err.details.error_name} - ${err.details.error_message}`
-          : err.message;
+        const detailedErrorMessage =
+          err.details &&
+          `Error ${err.details.error_id}: ${err.details.error_name} - ${err.details.error_message}`;
         dataHook.setErrorMessage(detailedErrorMessage!);
         dataHook.setErrorSnackOpen(true);
       },
@@ -45,7 +45,7 @@ const TagListComponent: React.FC<{
   const handleCloseError = () => {
     dataHook.setErrorSnackOpen(false);
   };
-
+  // console.log written to look how many times pages rerender , used to debug it sufficiently
   console.log(
     "dataHooksQueries",
     data,
@@ -123,5 +123,5 @@ const TagListComponent: React.FC<{
     </>
   );
 };
-
+// memoizing this component forbids unneccessary rerenders , allowing react query queries to work properly
 export const TagList = React.memo(TagListComponent);

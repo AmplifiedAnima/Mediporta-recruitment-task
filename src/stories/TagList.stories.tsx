@@ -3,6 +3,7 @@ import { TagList } from "../components/TagList/TagList";
 import { DataHookInterface } from "../interfaces/DataHook.interface";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { mockDataHook } from "./mockDataHook";
+import React from "react";
 
 export default {
   title: "Components/TagList",
@@ -19,14 +20,17 @@ const Template: StoryObj<{ dataHook: DataHookInterface }> = {
     dataHook: mockDataHook,
   },
   decorators: [
-    (Story) => (
-      <QueryClientProvider client={queryClient}>
-        <Story />
-      </QueryClientProvider>
-    ),
+    (Story) => {
+      queryClient.clear();
+
+      return (
+        <QueryClientProvider client={queryClient}>
+          <Story />
+        </QueryClientProvider>
+      );
+    },
   ],
 };
-
 export const Default = Template;
 
 Default.storyName = "Default TagList";
@@ -42,6 +46,7 @@ export const ErrorStory: StoryObj<{ dataHook: DataHookInterface }> = {
   args: {
     dataHook: {
       ...mockDataHook,
+      triggerFetch: true,
       fetchTags: () =>
         Promise.reject({
           message: "Simulated error message",
@@ -57,11 +62,15 @@ export const ErrorStory: StoryObj<{ dataHook: DataHookInterface }> = {
     },
   },
   decorators: [
-    (Story) => (
-      <QueryClientProvider client={queryClient}>
-        <Story />
-      </QueryClientProvider>
-    ),
+    (Story) => {
+      queryClient.clear();
+
+      return (
+        <QueryClientProvider client={queryClient}>
+          <Story />
+        </QueryClientProvider>
+      );
+    },
   ],
 };
 

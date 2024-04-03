@@ -6,7 +6,7 @@ import { paginationBoxStyles } from "./PaginationStyles";
 
 const PaginationTagList: React.FC<{
   dataHook: DataHookInterface;
-  data: TagsApiResponse | undefined;
+  data: TagsApiResponse;
 }> = ({ dataHook, data }) => {
   return (
     <Box
@@ -15,7 +15,10 @@ const PaginationTagList: React.FC<{
         zIndex: 10000,
       }}
     >
-      <Typography variant="subtitle2" sx={{ marginRight: "8px" }}>
+      <Typography
+        variant="subtitle2"
+        sx={{ marginRight: "8px", letterSpacing: "1px",marginBottom:'2px' }}
+      >
         PAGES :
       </Typography>
       <Pagination
@@ -37,7 +40,6 @@ const PaginationTagList: React.FC<{
           borderRadius: "8px",
         }}
         showFirstButton
-    
       />
     </Box>
   );

@@ -15,6 +15,10 @@ export const TagCard: React.FC<{ tag: string }> = ({ tag }) => {
             fontWeight: "fontWeightBold",
             fontSize: "1.8rem",
             color: "#34495e",
+            "@media (max-width:768px)": {
+              margin: "5px",
+              fontSize: "1.5rem",
+            },
           }}
         >
           {tag}

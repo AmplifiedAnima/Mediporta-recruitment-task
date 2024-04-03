@@ -18,7 +18,7 @@ export const NotificationHandlerDisplayComponent: React.FC<
           vertical: "top",
           horizontal: "center",
         }}
-        sx={{ zIndex: 99999 }}
+        sx={{ zIndex: 99999,marginTop:'45px' }}
       >
         <Alert
           onClose={handleClose}
