@@ -104,7 +104,7 @@ const TagListComponent: React.FC<{
         justifyContent="center"
         sx={{ marginTop: "5px" }}
       >
-        <Box sx={{ boxStylingTagList }}>
+        <Box sx={boxStylingTagList}>
           <TagTable tags={data.items} />
         </Box>
         <Grid item xs={12} sx={{ gridItemStyles }}>

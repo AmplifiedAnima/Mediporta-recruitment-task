@@ -43,7 +43,11 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
   };
 
   const handleSubmission = () => {
-    if (parseInt(localPageSize, 10) < 1 || parseInt(localPageSize, 10) > 100) {
+    if (
+      parseInt(localPageSize, 10) < 1 ||
+      parseInt(localPageSize, 10) > 100 ||
+      localPageSize === ""
+    ) {
       dataHook.setNotificationSnackMessage(
         "Page size must be between 1 and 100."
       );
@@ -56,6 +60,7 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
 
   const handleSnackClose = () => {
     dataHook.setNotificationSnackOpen(false);
+    setLocalPageSize("1");
   };
 
   return (
@@ -76,6 +81,13 @@ export const Header: React.FC<{ dataHook: DataHookInterface }> = ({
         value={localPageSize}
         onChange={onPageSizeInputChange}
         variant="outlined"
+        onBlur={() => {
+          // Set to 1 if the input is empty or invalid when user leaves the field
+          if (!localPageSize || isNaN(parseInt(localPageSize, 10))) {
+            setLocalPageSize("1");
+            handlePageSizeChangeDebounced(1);
+          }
+        }}
         inputProps={{ min: 1, max: 100 }}
         sx={textFieldStyling}
       />

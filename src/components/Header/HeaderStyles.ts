@@ -12,6 +12,7 @@ export const textFieldStyling = {
   "& .MuiInputBase-root": {
     height: "35px",
     alignItems: "center",
+    top:'2px'
   },
 
   "& .MuiTypography-root": {
@@ -29,7 +30,7 @@ export const textFieldStyling = {
     color: "#0079bf",
   },
   "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#5ba4cf",
+    borderColor: "#5ba4cf"
   },
   
   "& .MuiButton-contained": {
