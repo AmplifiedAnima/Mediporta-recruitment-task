@@ -4,7 +4,7 @@ import { DataHookInterface } from "../../interfaces/DataHook.interface";
 import { ApiError, TagsApiResponse } from "../../interfaces/TagsApi.interface";
 import TagCard from "./Tags/TagCard";
 import PaginationTagList from "./Pagination/PaginationTagList";
-import { gridItemStyles } from "./TagListsStyles";
+import { gridItemStyles, boxStylingTagList } from "./TagListsStyles";
 import { SimpleErrorInlineHandler } from "../ErrorsAndNotifications/SimpleErrorInlineHandler";
 import React from "react";
 import CenteredBox from "./CenteredBox";
@@ -45,7 +45,7 @@ const TagListComponent: React.FC<{
   const handleCloseError = () => {
     dataHook.setErrorSnackOpen(false);
   };
-  // console.log written to look how many times pages rerender , used to debug it sufficiently
+  // console.log written to look how many times pages rerender , used to debug rerenders it sufficiently
   console.log(
     "dataHooksQueries",
     data,
@@ -104,16 +104,7 @@ const TagListComponent: React.FC<{
         justifyContent="center"
         sx={{ marginTop: "5px" }}
       >
-        <Box
-          sx={{
-            marginBottom: "50px", // Assume the pagination bar is 100px tall
-            padding: "10px 0px",
-            maxWidth: "700px",
-            width: "100%",
-            height: "100%",
-            boxSizing: "border-box",
-          }}
-        >
+        <Box sx={{ boxStylingTagList }}>
           <TagTable tags={data.items} />
         </Box>
         <Grid item xs={12} sx={{ gridItemStyles }}>
@@ -123,5 +114,6 @@ const TagListComponent: React.FC<{
     </>
   );
 };
-// memoizing this component forbids unneccessary rerenders , allowing react query queries to work properly
+
+// memoizing this component dissolves unneccessary rerenders , allowing react query queries to work properly
 export const TagList = React.memo(TagListComponent);
